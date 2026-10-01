@@ -1,0 +1,11 @@
+format 1
+
+plugin "hello" {
+    version "1.0.0"
+    title "Hello"
+    description "Notifies once when enabled."
+    kind "script"
+    api_version 1
+    license "MIT"
+    path "plugins/hello"
+}

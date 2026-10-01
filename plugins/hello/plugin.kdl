@@ -1,0 +1,12 @@
+id "hello"
+title "Hello"
+description "Notifies once when enabled."
+version "1.0.0"
+api_version 1
+license "MIT"
+kind "script"
+capability "command"
+entry "main.js"
+permissions {
+    notifications #true
+}
