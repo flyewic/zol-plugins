@@ -1,6 +1,6 @@
 # zol-plugins
 
-Official catalog of plugins for [zol](https://github.com/flyewic/zol).
+Official catalog of plugins for [zol](https://github.com/flyewic/zol-releases).
 
 Each plugin is a folder under `plugins/<id>/` with a `plugin.kdl` manifest and its script. `index.kdl` lists them. The editor installs a chosen plugin into the user plugin directory and still asks before a script runs.
 
