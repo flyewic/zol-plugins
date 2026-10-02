@@ -1,0 +1,34 @@
+// github — a GitHub integration panel. Local repo identity comes from
+// `zol.git.*`; the GitHub API is reached through the `gh` CLI via `zol.exec`.
+// This scaffold resolves the repository and probes `gh`; PR and issue views
+// build on it.
+//
+// Demo without a real repository or network: point `gh_path` at
+// `fake-gh.sh` in this folder (see README.md).
+
+id          "github"
+title       "GitHub"
+version     "0.1.0"
+description "Browse pull requests, CI status, and issues for the current GitHub repository."
+authors     "zol"
+license     "MIT"
+api_version 1
+kind        "script"
+entry       "main.js"
+// Panels need the `ui` level (which also covers command registration).
+capability  "ui"
+
+permissions {
+    subprocess   #true    // gh (and zol.openUrl's platform opener)
+    async_js     #true    // zol.exec returns promises
+    ui_panels    #true
+    git_read     #true    // repo root / branch / origin remote
+    project_read #true    // project root fallback for gh's cwd
+}
+
+settings {
+    gh_path         "gh"
+    host            "github.com"
+    repo_override   ""    // "owner/name"; skips remote parsing
+    refresh_seconds 60
+}

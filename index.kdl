@@ -9,3 +9,53 @@ plugin "hello" {
     license "MIT"
     path "plugins/hello"
 }
+
+plugin "github" {
+    version "0.1.0"
+    title "GitHub"
+    description "Browse pull requests, CI status, and issues for the current GitHub repository."
+    kind "script"
+    api_version 1
+    license "MIT"
+    path "plugins/github"
+}
+
+plugin "ai-kit" {
+    version "0.1.0"
+    title "AI Kit"
+    description "Provider adapters and streaming helpers shared by AI plugins."
+    kind "library"
+    api_version 1
+    license "MIT"
+    path "plugins/ai-kit"
+}
+
+plugin "ai-chat" {
+    version "0.1.0"
+    title "AI Chat"
+    description "Streaming chat panel built on ai-kit."
+    kind "script"
+    api_version 1
+    license "MIT"
+    path "plugins/ai-chat"
+}
+
+plugin "ai-complete" {
+    version "0.1.0"
+    title "AI Complete"
+    description "Single-line ghost-text completion built on ai-kit."
+    kind "script"
+    api_version 1
+    license "MIT"
+    path "plugins/ai-complete"
+}
+
+plugin "ai-fake" {
+    version "0.1.0"
+    title "AI Fake (test)"
+    description "Always suggests the same text; exercises the ghost-text seam with no model."
+    kind "script"
+    api_version 1
+    license "MIT"
+    path "plugins/ai-fake"
+}

@@ -162,7 +162,9 @@ class Parser:
 
     def take_ident(self):
         tok = self.peek()
-        if not isinstance(tok, tuple) or tok[0] != "ident":
+        # KDL node names may be quoted strings. `depends { "ai-kit" "^0.1.0" }`
+        # uses one; the editor parser accepts it, so the gate must too.
+        if not isinstance(tok, tuple) or tok[0] not in ("ident", "string"):
             fail(f"expected a node name, got {tok!r}")
         self.i += 1
         return tok[1]
@@ -263,7 +265,24 @@ def tokenize(text):
                 fail(f"unexpected {c!r}")
             while j < n and text[j].isdigit():
                 j += 1
-            tokens.append(("int", int(text[i:j])))
+            # KDL numbers may carry a fraction and/or exponent. The gate only
+            # reads id/version strings, but it still tokenizes the rest of the
+            # manifest, and AI settings use floats (temperature 0.2).
+            is_float = False
+            if j < n and text[j] == ".":
+                is_float = True
+                j += 1
+                while j < n and text[j].isdigit():
+                    j += 1
+            if j < n and text[j] in ("e", "E"):
+                is_float = True
+                j += 1
+                if j < n and text[j] in ("+", "-"):
+                    j += 1
+                while j < n and text[j].isdigit():
+                    j += 1
+            raw = text[i:j]
+            tokens.append(("float", float(raw)) if is_float else ("int", int(raw)))
             i = j
             continue
         if c == "#":

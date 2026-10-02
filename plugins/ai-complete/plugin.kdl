@@ -1,0 +1,36 @@
+id          "ai-complete"
+title       "AI Complete"
+version     "0.1.0"
+description "Single-line ghost-text completion built on ai-kit."
+authors     "zol"
+license     "MIT"
+api_version 1
+kind        "script"
+entry       "main.js"
+capability  "command"
+
+permissions {
+    subprocess #true
+    async_js    #true
+    suggest     #true
+    buffer_read #true
+    environment #true
+}
+
+depends {
+    "ai-kit" "^0.1.0"
+}
+
+settings {
+    provider    "ollama"
+    model       "llama3.2"
+    endpoint    ""
+    api_key_env "OPENAI_API_KEY"
+    fake_command ""
+    debounce_ms 300
+    context_lines 40
+}
+
+secrets {
+    api_key
+}

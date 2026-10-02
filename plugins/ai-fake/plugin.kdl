@@ -1,0 +1,20 @@
+id          "ai-fake"
+title       "AI Fake (test)"
+version     "0.1.0"
+description "Always suggests the same text; exercises the ghost-text seam with no model."
+authors     "zol"
+license     "MIT"
+api_version 1
+kind        "script"
+entry       "main.js"
+capability  "command"
+
+permissions {
+    suggest  #true
+    async_js #true
+}
+
+settings {
+    debounce_ms 200
+    text        "test test"
+}

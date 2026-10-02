@@ -1,0 +1,24 @@
+id          "ai-kit"
+title       "AI Kit"
+version     "0.1.0"
+description "Provider adapters and streaming helpers shared by AI plugins."
+authors     "zol"
+license     "MIT"
+api_version 1
+kind        "library"
+entry       "index.js"
+includes    "providers.js" "sse.js"
+capability  "read"
+
+permissions {
+    subprocess #true
+    network    #false
+    async_js   #true
+}
+
+settings {
+    provider "ollama"
+    model    "llama3.2"
+    endpoint ""
+    temperature 0.2
+}

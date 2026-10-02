@@ -1,0 +1,38 @@
+id          "ai-chat"
+title       "AI Chat"
+version     "0.1.0"
+description "Streaming chat panel built on ai-kit."
+authors     "zol"
+license     "MIT"
+api_version 1
+kind        "script"
+entry       "main.js"
+capability  "ui"
+
+permissions {
+    subprocess #true
+    async_js    #true
+    ui_panels   #true
+    buffer_read #true
+    buffer_write #true
+    filesystem  #true
+    environment #true
+}
+
+depends {
+    "ai-kit" "^0.1.0"
+}
+
+settings {
+    provider      "ollama"
+    model         "llama3.2"
+    endpoint      ""
+    api_key_env   "OPENAI_API_KEY"
+    fake_command  ""
+    temperature   0.2
+    system        "You are a concise coding assistant."
+}
+
+secrets {
+    api_key
+}
