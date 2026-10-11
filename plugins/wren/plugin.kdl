@@ -1,0 +1,8 @@
+id "wren"
+title "Wren"
+version "1.0.0"
+api_version 1
+kind "language"
+language "wren"
+license "MIT"
+description "Tree-sitter grammar pack (WASM)."

@@ -1,0 +1,8 @@
+id "nim"
+title "Nim"
+version "1.0.0"
+api_version 1
+kind "language"
+language "nim"
+license "MIT"
+description "Tree-sitter grammar pack (WASM)."

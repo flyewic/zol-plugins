@@ -1,0 +1,8 @@
+id "cpp"
+title "C++"
+version "1.0.0"
+api_version 1
+kind "language"
+language "cpp"
+license "MIT"
+description "Tree-sitter grammar pack (WASM)."

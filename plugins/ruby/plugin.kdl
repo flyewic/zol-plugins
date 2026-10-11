@@ -1,0 +1,8 @@
+id "ruby"
+title "Ruby"
+version "1.0.0"
+api_version 1
+kind "language"
+language "ruby"
+license "MIT"
+description "Tree-sitter grammar pack (WASM)."

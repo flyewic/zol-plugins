@@ -59,3 +59,123 @@ plugin "ai-fake" {
     license "MIT"
     path "plugins/ai-fake"
 }
+plugin "cpp" {
+    version "1.0.0"
+    title "C++"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/cpp"
+}
+
+plugin "kotlin" {
+    version "1.0.0"
+    title "Kotlin"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/kotlin"
+}
+
+plugin "csharp" {
+    version "1.0.0"
+    title "C#"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/csharp"
+}
+
+plugin "ruby" {
+    version "1.0.0"
+    title "Ruby"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/ruby"
+}
+
+plugin "odin" {
+    version "1.0.0"
+    title "Odin"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/odin"
+}
+
+plugin "nim" {
+    version "1.0.0"
+    title "Nim"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/nim"
+}
+
+plugin "glsl" {
+    version "1.0.0"
+    title "GLSL"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/glsl"
+}
+
+plugin "wren" {
+    version "1.0.0"
+    title "Wren"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/wren"
+}
+
+plugin "umka" {
+    version "1.0.0"
+    title "Umka"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/umka"
+}
+
+plugin "haxe" {
+    version "1.0.0"
+    title "Haxe"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/haxe"
+}
+
+plugin "typst" {
+    version "1.0.0"
+    title "Typst"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/typst"
+}
+
+plugin "groovy" {
+    version "1.0.0"
+    title "Groovy"
+    description "Tree-sitter grammar pack (WASM)."
+    kind "language"
+    api_version 1
+    license "MIT"
+    path "plugins/groovy"
+}
+

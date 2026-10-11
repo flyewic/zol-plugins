@@ -6,11 +6,16 @@ import subprocess
 import sys
 
 MAX_FILE = 256 * 1024
+# A `kind "language"` pack ships a WASM grammar module (KB–MBs), so
+# `grammar.wasm` gets a larger cap. Native code is still refused.
+MAX_WASM = 16 * 1024 * 1024
 MAX_FILES = 32
 MAX_DEPTH = 8
 ALLOWED_MODES = {"100644", "100755"}
 EXACT_NAMES = {"LICENSE", "README", "README.md"}
-SUFFIXES = (".js", ".kdl", ".md")
+# `.scm` are tree-sitter queries; `grammar.wasm` is the one allowed binary.
+SUFFIXES = (".js", ".kdl", ".md", ".scm")
+LANGUAGE_EXACT = {"grammar.wasm"}
 
 
 def fail(message):
@@ -78,7 +83,7 @@ def depth_of(rel):
 
 
 def allowed_name(base):
-    if base in EXACT_NAMES:
+    if base in EXACT_NAMES or base in LANGUAGE_EXACT:
         return True
     return base.endswith(SUFFIXES)
 
@@ -419,8 +424,10 @@ def main():
         full = os.path.join(root, path)
         if os.path.islink(full):
             fail(f"{path}: symlink")
-        if blob_size(obj) > MAX_FILE:
-            fail(f"{path}: file is over 256 KiB")
+        base = os.path.basename(path)
+        cap = MAX_WASM if base in LANGUAGE_EXACT else MAX_FILE
+        if blob_size(obj) > cap:
+            fail(f"{path}: file is over {cap // 1024} KiB")
         by_path[path] = obj
 
     groups = check_plugins(by_path)

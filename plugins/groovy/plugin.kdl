@@ -1,0 +1,15 @@
+id "groovy"
+title "Groovy"
+version "1.0.0"
+api_version 1
+kind "language"
+language "groovy"
+license "MIT"
+extensions ".groovy" ".gradle" ".gvy" ".gy"
+filenames "Jenkinsfile"
+comment "//"
+lsp {
+    binary "groovy-language-server"
+    language_id "groovy"
+}
+description "Tree-sitter grammar pack (WASM)."

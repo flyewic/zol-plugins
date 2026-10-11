@@ -1,0 +1,8 @@
+id "odin"
+title "Odin"
+version "1.0.0"
+api_version 1
+kind "language"
+language "odin"
+license "MIT"
+description "Tree-sitter grammar pack (WASM)."
