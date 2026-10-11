@@ -16,6 +16,9 @@ EXACT_NAMES = {"LICENSE", "README", "README.md"}
 # `.scm` are tree-sitter queries; `grammar.wasm` is the one allowed binary.
 SUFFIXES = (".js", ".kdl", ".md", ".scm")
 LANGUAGE_EXACT = {"grammar.wasm"}
+# The repo is MIT, but a plugin declares its own permissive SPDX id (a grammar
+# pack carries the upstream grammar's license, e.g. `nim` MPL-2.0).
+ALLOWED_LICENSES = {"MIT", "Apache-2.0", "MPL-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC"}
 
 
 def fail(message):
@@ -366,14 +369,26 @@ def index_rows(text):
         seen.add(pid)
         path = child_string(node, "path", pid)
         version = child_string(node, "version", pid)
+        license_id = child_string(node, "license", pid)
         if path != f"plugins/{pid}":
             fail(f"index path not plugins/{pid}")
         if version is None:
             fail(f"{pid}: id/version mismatch")
-        rows.append((pid, version))
+        if license_id not in ALLOWED_LICENSES:
+            fail(f"{pid}: license must be one of {sorted(ALLOWED_LICENSES)}")
+        rows.append((pid, version, license_id))
     if not saw_format:
         fail("format is missing")
     return rows
+
+
+def manifest_license(text, label):
+    doc = parse_kdl(text)
+    found = None
+    for node in doc:
+        if node.name == "license":
+            found = string_arg(node, f"{label} license")
+    return found
 
 
 def check_plugins(by_path):
@@ -441,11 +456,11 @@ def main():
     except UnicodeDecodeError:
         fail("index.kdl: not utf-8")
     listed = index_rows(index_text)
-    indexed = {pid: version for pid, version in listed}
+    indexed = {pid: version for pid, version, _ in listed}
     for pid in groups:
         if pid not in indexed:
             fail(f"index.kdl has no row whose path is plugins/{pid}")
-    for pid, version in listed:
+    for pid, version, lic in listed:
         manifest_path = f"plugins/{pid}/plugin.kdl"
         if manifest_path not in by_path:
             fail(f"plugins/{pid}: missing plugin.kdl")
@@ -456,6 +471,8 @@ def main():
         mid, mver = manifest_id_version(manifest_text, f"plugins/{pid}/plugin.kdl")
         if mid != pid or mver != version:
             fail(f"plugins/{pid}: id/version mismatch")
+        if manifest_license(manifest_text, f"plugins/{pid}/plugin.kdl") != lic:
+            fail(f"plugins/{pid}: license differs from the index row")
 
 
 if __name__ == "__main__":

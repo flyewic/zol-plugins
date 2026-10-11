@@ -115,7 +115,7 @@ plugin "nim" {
     description "Tree-sitter grammar pack (WASM)."
     kind "language"
     api_version 1
-    license "MIT"
+    license "MPL-2.0"
     path "plugins/nim"
 }
 
@@ -175,7 +175,7 @@ plugin "groovy" {
     description "Tree-sitter grammar pack (WASM)."
     kind "language"
     api_version 1
-    license "MIT"
+    license "Apache-2.0"
     path "plugins/groovy"
 }
 

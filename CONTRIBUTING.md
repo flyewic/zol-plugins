@@ -9,7 +9,7 @@ Edit `index.kdl` in the same change as the plugin. One directory, `plugins/<id>/
 - `plugins/<id>/plugin.kdl` parses. `id` equals the directory name. `version` is semver without a `v` prefix and matches the `index.kdl` row byte for byte. `path` is exactly `plugins/<id>`.
 - `kind` is `script`, `library`, or `language`. A `language` pack is a WASM grammar (`grammar.wasm` + `.scm` queries) — never a native `.so`/`.dylib`/`.dll`; no archives and no symlinks in any kind.
 - `entry` exists. `permissions` are the minimum the script needs. `network` without a tight `network_hosts` list is a reject. `eval_js` and `subprocess` need a reason in the pull request text.
-- `license` is `MIT`. This repository ships a `LICENSE` file. Do not copy the editor's license. No secrets, no tokens, and no vendored `node_modules`.
+- `license` is a permissive SPDX id — `MIT`, `Apache-2.0`, `MPL-2.0`, `BSD-2-Clause`/`BSD-3-Clause`, `ISC` — and matches the plugin's real upstream (a grammar pack declares its grammar's license, e.g. `nim` is MPL-2.0). This repository ships an MIT `LICENSE`. Do not copy the editor's license. No secrets, no tokens, and no vendored `node_modules`.
 - `description` contains no web address. Comments in `index.kdl` do not either. Links belong in the plugin README.
 - `format` is the integer `1`. A duplicate `plugin "<id>"` is a reject, not last-wins.
 - File names end in `.js`, `.kdl`, `.md`, or `.scm`, or are exactly `LICENSE`, `README`, `README.md`, or `grammar.wasm`.

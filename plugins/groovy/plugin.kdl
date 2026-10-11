@@ -4,7 +4,7 @@ version "1.0.0"
 api_version 1
 kind "language"
 language "groovy"
-license "MIT"
+license "Apache-2.0"
 extensions ".groovy" ".gradle" ".gvy" ".gy"
 filenames "Jenkinsfile"
 comment "//"
